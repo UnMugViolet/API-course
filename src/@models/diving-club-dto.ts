@@ -11,4 +11,6 @@ export class DivingClubDto implements DivingClub {
   phoneNumber: string;
   @ApiProperty()
   id?: number | undefined;
+  @ApiProperty()
+  phoneNumber: string;
 }
