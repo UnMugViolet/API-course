@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Res, Body, HttpStatus, Delete, Param, Put } from "@nestjs/common";
 import { Response } from 'express';
-import { AddressDto } from "src/@models/address-dto";
+import { AddressDto } from "@models/address-dto";
 import { AddressesService } from "./addresses.service";
 
 @Controller('addresses')
