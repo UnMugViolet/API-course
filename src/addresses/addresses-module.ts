@@ -5,7 +5,7 @@ import { AddressEntity } from '../@datas/AddressEntity';
 import {
   AddressController,
   AddressesController,
-} from './addresses.controler.ts';
+} from './addresses.controler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AddressEntity])],
