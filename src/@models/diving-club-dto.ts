@@ -4,11 +4,11 @@ import { DivingClub } from './diving-club';
 
 export class DivingClubDto implements DivingClub {
   @ApiProperty()
-  id?: number | undefined;
-  @ApiProperty()
   name: string;
   @ApiProperty()
-  phonenumber: string;
-  @ApiProperty()
   address: AddressDto;
+  @ApiProperty()
+  id?: number | undefined;
+  @ApiProperty()
+  phoneNumber: string;
 }
