@@ -13,8 +13,8 @@ import { AddressesModule } from './addresses/addresses-module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mssql',
-      host: 'SURFACE-DAVID\\SQLEXPRESS',
+      type: 'mysql',
+      host: 'localhost',
       port: 1433,
       username: 'sa',
       password: '123456pw$',
