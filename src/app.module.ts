@@ -24,7 +24,7 @@ import { AddressesModule } from './addresses/addresses-module';
         useUTC: true,
       },
       entities: [AddressEntity, DivingClubEntity],
-      synchronize: true,
+      synchronize: false,
     }),
     DivingClubsModule,
     AddressesModule,
