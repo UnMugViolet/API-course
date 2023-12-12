@@ -3,7 +3,7 @@ import { DivingClub } from '../@models/diving-club';
 import { BaseService } from '../@core/base-service';
 import { AddressesService } from '../addresses/addresses.service';
 import { DivingClubPatchDto } from '../@model-dto/diving-club-patch-dto';
-import { AddressPatchDto } from 'src/@model-dto/address-patch-dto';
+import { AddressPatchDto } from '@model-dto/address-patch-dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DivingClubEntity } from '../@datas/DivingClubEntity';
 import { DataSource, Repository } from 'typeorm';
@@ -28,34 +28,39 @@ export class DivingClubsService extends BaseService<DivingClub> {
   }
 
   async saveDivingClub(club: DivingClub): Promise<DivingClub> {
-    return (await this.saveEntities(club))?.[0];
+    let entity = new DivingClubEntity();
+    entity = Object.keys(club).reduce((e, key) => {
+      e[key] = club[key];
+      return e;
+    }, entity);
+    return (await this.saveEntities(entity))?.[0];
   }
 
-  async patchDivingClub(club: DivingClubPatchDto): Promise<DivingClub> {
-    let result: DivingClub = await this.getDivingClub(club.id);
-    result.name = club.name ?? result.name;
-    result = Object.keys(club).reduce(
-      (prev: DivingClub, key: string) =>
-        this.mapPatchDivingClub(prev, key, club),
-      result,
-    );
-    return result;
-  }
+  // async patchDivingClub(club: DivingClubPatchDto): Promise<DivingClub> {
+  //   let result: DivingClub = await this.getDivingClub(club.id);
+  //   result.name = club.name ?? result.name;
+  //   result = Object.keys(club).reduce(
+  //     (prev: DivingClub, key: string) =>
+  //       this.mapPatchDivingClub(prev, key, club),
+  //     result,
+  //   );
+  //   return result;
+  // }
 
-  async deleteDivingClub(id: number): Promise<DivingClub> {
-    const result = await this.getDivingClub(id);
-    await this.repository.delete(id);
-    return result;
-  }
-  private mapPatchDivingClub(
-    prev: DivingClub,
-    key: string,
-    club: DivingClubPatchDto,
-  ): DivingClub {
-    if (club[key] instanceof AddressPatchDto) {
-      // prev[key] = this.addressService.patchAddress(club[key]);
-    } else {
-      return prev;
-    }
-  }
+  // async deleteDivingClub(id: number): Promise<DivingClub> {
+  //   const result = await this.getDivingClub(id);
+  //   await this.repository.delete(id);
+  //   return result;
+  // }
+  // private mapPatchDivingClub(
+  //   prev: DivingClub,
+  //   key: string,
+  //   club: DivingClubPatchDto,
+  // ): DivingClub {
+  //   if (club[key] instanceof AddressPatchDto) {
+  //     // prev[key] = this.addressService.patchAddress(club[key]);
+  //   } else {
+  //     return prev;
+  //   }
+  // }
 }

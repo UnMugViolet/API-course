@@ -10,4 +10,6 @@ export class DivingClubEntity implements DivingClub {
   name: string;
   @ManyToOne((type) => AddressEntity, (address) => address.clubs)
   address: AddressEntity;
+  @Column()
+  phoneNumber: string;
 }

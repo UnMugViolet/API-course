@@ -1,42 +1,44 @@
-import { Controller, Post, Get, Res, Body, HttpStatus, Delete, Param, Put } from "@nestjs/common";
-import { Response } from 'express';
-import { AddressDto } from "@models/address-dto";
-import { AddressesService } from "./addresses.service";
+import {
+    Body,
+    Controller,
+    Get,
+    HttpStatus,
+    NotFoundException,
+    Param,
+    ParseIntPipe,
+    Post,
+    Res,
+} from '@nestjs/common';
+import { AddressesService } from './addresses.service';
+import { AddressDto } from '@models/address-dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('addresses')
 @Controller('addresses')
 export class AddressesController {
-    constructor(private readonly adresseClubService:AddressesService) {}
+    constructor(private readonly service: AddressesService) { }
 
     @Get('/')
     async getAddresses(@Res() res) {
-        const divingClubs = await this.adresseClubService.getAddresses();
-        return res.status(HttpStatus.OK).json(divingClubs);
+        const result = await this.service.getAddresses();
+        return res.status(HttpStatus.OK).json(result);
+    }
+
+    @Get('/:id')
+    async getAddress(@Res() res, @Param('id', ParseIntPipe) id: number) {
+        const result = await this.service.getAddress(id);
+        if (!result) {
+            throw new NotFoundException('Address does not exist!');
+        }
+        return res.status(HttpStatus.OK).json(result);
     }
 
     @Post('/post')
-    async addAddress (@Res() res, @Body() club: AddressDto) {
-        const divingClubs = await this.adresseClubService.saveAdress(club);
+    async create(@Res() res, @Body() createItem: AddressDto) {
+        const newItem = await this.service.saveAddress(createItem);
         return res.status(HttpStatus.OK).json({
-            message: 'Post Ok',
-            item: divingClubs
-        });
-    }
-
-    @Put('/:id')
-    async updateAddress(@Param('id') id: number, @Body() updatedAddress: AddressDto, @Res() res: Response) {
-        const updatedClub = await this.adresseClubService.patchAddress(updatedAddress);
-        return res.status(HttpStatus.OK).json({
-            message: 'Update Ok',
-            item: updatedClub
-        });
-    }
-
-    @Delete('/:id')
-    async deleteAddress(@Param('id') id: number, @Res() res: Response) {
-        const deletedClub = await this.adresseClubService.deleteAddress(id);
-        return res.status(HttpStatus.OK).json({
-            message: 'Delete Ok',
-            item: deletedClub
+            message: 'Address has been submitted successfully!',
+            item: newItem,
         });
     }
 }
