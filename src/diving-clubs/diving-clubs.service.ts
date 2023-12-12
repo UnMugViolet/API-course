@@ -27,8 +27,13 @@ export class DivingClubsService extends BaseService<DivingClub> {
     return this.repository.findOneBy({ id });
   }
 
-  async saveDivingClub(club: DivingClub): Promise<DivingClub> {
-    return (await this.saveEntities(club))?.[0];
+  async saveDivingClub(address: DivingClub): Promise<DivingClub> {
+    let entity = new DivingClubEntity();
+    entity = Object.keys(address).reduce((e, key) => {
+      e[key] = address[key];
+      return e;
+    }, entity);
+    return (await this.saveEntities(entity))?.[0];
   }
 
   async patchDivingClub(club: DivingClubPatchDto): Promise<DivingClub> {

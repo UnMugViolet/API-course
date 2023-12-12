@@ -8,5 +8,7 @@ export class DivingClubDto implements DivingClub {
   @ApiProperty()
   name: string;
   @ApiProperty()
+  phonenumber: string;
+  @ApiProperty()
   address: AddressDto;
 }
