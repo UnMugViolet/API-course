@@ -1,8 +1,8 @@
-import { Identifier } from "./identifier";
+import { Identifier } from './Identifier';
 
 export interface Address extends Identifier {
-    streetNumber : string;
-    street: string;
-    zipCode: string;
-    city: string;
+  streetNumber: string;
+  street: string;
+  zipCode: string;
+  city: string;
 }

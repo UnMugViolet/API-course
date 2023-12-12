@@ -1,14 +1,25 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DivingClubsController } from './controller/diving-club/diving-clubs.controller';
-import { DivingClubsService } from './controller/diving-club/diving-clubs.service';
-import { AddressesService } from './addresses/adresses.service';
-import { AddressesController } from './addresses/addresses.controller';
+import { DivingClubsController } from './diving-clubs/diving-clubs.controller';
+import { DivingClubsService } from './diving-clubs/diving-clubs.service';
+import { AddressesService } from './addresses/addresses.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [],
-  controllers: [AppController, DivingClubsController, AddressesController ],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'test',
+      entities: [],
+      synchronize: true,
+    }),
+  ],
+  controllers: [AppController, DivingClubsController],
   providers: [AppService, DivingClubsService, AddressesService],
 })
 export class AppModule {}

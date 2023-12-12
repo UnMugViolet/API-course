@@ -1,5 +1,5 @@
 {
-  "name": "api-course",
+  "name": "diving-clubs",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -24,8 +24,12 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.16",
+    "@nestjs/typeorm": "^10.0.1",
+    "mssql": "^9.3.2",
+    "mysql2": "^3.6.5",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

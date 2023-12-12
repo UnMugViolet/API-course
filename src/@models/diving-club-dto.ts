@@ -1,12 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { DivingClub } from "./diving-club";
-import { AddressDto } from "./address-dto";
+import { ApiProperty } from '@nestjs/swagger';
+import { AddressDto } from './address-dto';
+import { DivingClub } from './diving-club';
 
 export class DivingClubDto implements DivingClub {
-    @ApiProperty()
-    id: number;
-    @ApiProperty()
-    name: string;
-    @ApiProperty()
-    address: AddressDto;
+  @ApiProperty()
+  name: string;
+  @ApiProperty()
+  address: AddressDto;
+  @ApiProperty()
+  id?: number | undefined;
 }

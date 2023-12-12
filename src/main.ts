@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('Diving Club manager')
-    .setDescription('The Diving Club manager API description')
+    .setTitle('Diving clubs manager')
+    .setDescription('The diving clubs manager API description')
     .setVersion('1.0')
     .addTag('diving-club')
     .build();
