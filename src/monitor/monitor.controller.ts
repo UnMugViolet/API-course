@@ -13,7 +13,9 @@ import {
   } from '@nestjs/common';
     import { MonitorService } from './monitor.service';
     import { MonitorDto } from 'src/@model-dto/monitor-dto';
-  
+    import { ApiTags } from '@nestjs/swagger';
+    
+  @ApiTags('monitors')
   @Controller('monitors')
   export class MonitorController {
     constructor(private readonly service: MonitorService) {}

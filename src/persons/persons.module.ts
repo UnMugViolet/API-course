@@ -11,5 +11,6 @@ import { AddressEntity } from 'src/@datas/AddressEntity';
   imports: [AddressesModule, TypeOrmModule.forFeature([PersonEntity]), TypeOrmModule.forFeature([AddressEntity])],
   providers: [PersonsService, AddressesService],
   controllers: [PersonsController],
+  exports: [PersonsService],
 })
 export class PersonsModule {}

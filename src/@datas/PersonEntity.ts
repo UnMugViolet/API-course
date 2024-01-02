@@ -1,6 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { AddressEntity } from './AddressEntity';
 import { Person } from '../@models/person';
+import { Monitor } from 'src/@models/monitor';
+import { MonitorEntity } from './MonitorEntity';
 
 @Entity()
 export class PersonEntity implements Person {
@@ -19,4 +21,6 @@ export class PersonEntity implements Person {
 
   @ManyToOne((type) => AddressEntity, (address) => address.persons)
   address: AddressEntity;
+
+  monitor?: MonitorEntity;
 }
